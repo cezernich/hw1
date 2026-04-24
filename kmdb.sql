@@ -94,21 +94,100 @@
 .headers off
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
--- TODO!
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS movie;
+DROP TABLE IF EXISTS actor;
+DROP TABLE IF EXISTS agent;
+DROP TABLE IF EXISTS studio;
 
 -- Create new tables, according to your domain model
--- TODO!
+CREATE TABLE role (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  character_name TEXT,
+  movie_id INTEGER,
+  actor_id INTEGER
+);
+
+CREATE TABLE movie (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT,
+  year INTEGER,
+  MPAA_rating TEXT,
+  studio_id INTEGER
+);
+
+CREATE TABLE actor (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  agent_id INTEGER
+);
+
+CREATE TABLE agent (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT
+);
+
+CREATE TABLE studio (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  location TEXT
+);
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
--- TODO!
+INSERT INTO studio (name, location)
+VALUES ('Warner Bros.', 'Burbank, CA');
+
+INSERT INTO agent (name)
+VALUES ('Ari Emanuel');
+
+INSERT INTO movie (title, year, MPAA_rating, studio_id)
+VALUES ('Batman Begins', 2005, 'PG-13', 1),
+('The Dark Knight', 2008, 'PG-13', 1),
+('The Dark Knight Rises', 2012, 'PG-13', 1);
+
+INSERT INTO actor (name)
+VALUES ('Christian Bale'),
+ ('Michael Caine'),
+ ('Liam Neeson'),
+ ('Katie Holmes'),
+ ('Gary Oldman'),
+ ('Heath Ledger'),
+ ('Aaron Eckhart'),
+ ('Maggie Gyllenhaal'),
+ ('Tom Hardy'),
+ ('Joseph Gordon-Levitt'),
+ ('Anne Hathaway');
+
+INSERT INTO role (character_name, movie_id, actor_id)
+VALUES 
+    ('Bruce Wayne',          1, 1),
+    ('Alfred',               1, 2),
+    ('Ra''s Al Ghul',        1, 3),
+    ('Rachel Dawes',         1, 4),
+    ('Commissioner Gordon',  1, 5),
+    ('Bruce Wayne',          2, 1),
+    ('Joker',                2, 6),
+    ('Harvey Dent',          2, 7),
+    ('Alfred',               2, 2),
+    ('Rachel Dawes',         2, 8),
+    ('Bruce Wayne',          3, 1),
+    ('Commissioner Gordon',  3, 5),
+    ('Bane',                 3, 9),
+    ('John Blake',           3, 10),
+    ('Selina Kyle',          3, 11);
+
+UPDATE actor 
+SET agent_id = 1
+WHERE name = 'Christian Bale';
 
 -- Prints a header for the movies output
-.print "Movies"
-.print "======"
-.print ""
+.print "Movie"
+.print "Role"
+.print "Agent"
+.print "Studio"
+.print "Actor"
 
--- ***TODO!***
 -- The SQL statement for the movies output goes here.
 
 -- Example output:
