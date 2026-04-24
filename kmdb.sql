@@ -183,10 +183,12 @@ WHERE name = 'Christian Bale';
 
 -- Prints a header for the movies output
 .print "Movie"
-.print "Role"
-.print "Agent"
-.print "Studio"
-.print "Actor"
+.print "======"
+.print ""
+
+SELECT movie.title, movie.year, movie.mpaa_rating, studio.name
+FROM movie
+JOIN studio ON movie.studio_id = studio.id;
 
 -- The SQL statement for the movies output goes here.
 
@@ -203,7 +205,11 @@ WHERE name = 'Christian Bale';
 .print "========"
 .print ""
 
--- ***TODO!***
+SELECT movie.title, actor.name, role.character_name
+FROM role
+JOIN movie ON role.movie_id = movie.id
+JOIN actor ON role.actor_id = actor.id;
+
 -- The SQL statement for the cast output goes here.
 
 -- Example output:
