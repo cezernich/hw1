@@ -237,7 +237,10 @@ JOIN actor ON role.actor_id = actor.id;
 .print "===================="
 .print ""
 
--- ***TODO!***
+SELECT actor.name
+FROM actor
+JOIN agent ON actor.agent_id = agent.id;
+
 -- The SQL statement for the represented actor(s) output goes here.
 
 -- Example output:
